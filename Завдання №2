@@ -1,0 +1,136 @@
+using System;
+
+// Оголошення класу користувача
+public class User
+{
+    protected string name; // Ім'я користувача
+    protected int age; // Вік користувача
+
+    // Метод для встановлення імені користувача
+    public void setName(string name)
+    {
+        this.name = name;
+    }
+
+    // Метод для отримання імені користувача
+    public string getName()
+    {
+        return name;
+    }
+
+    // Метод для встановлення віку користувача
+    public void setAge(int age)
+    {
+        this.age = age;
+    }
+
+    // Метод для отримання віку користувача
+    public int getAge()
+    {
+        return age;
+    }
+}
+
+// Клас-нащадок, що розширює клас User для представлення працівника
+public class Worker : User
+{
+    private int salary; // Зарплата працівника
+
+    // Метод для встановлення зарплати працівника
+    public void setSalary(int salary)
+    {
+        this.salary = salary;
+    }
+
+    // Метод для отримання зарплати працівника
+    public int getSalary()
+    {
+        return salary;
+    }
+}
+
+// Клас-нащадок, що розширює клас User для представлення студента
+public class Student : User
+{
+    private int scholarship; // Стипендія студента
+    private int course; // Курс студента
+
+    // Метод для встановлення стипендії студента
+    public void setScholarship(int scholarship)
+    {
+        this.scholarship = scholarship;
+    }
+
+    // Метод для отримання стипендії студента
+    public int getScholarship()
+    {
+        return scholarship;
+    }
+
+    // Метод для встановлення курсу студента
+    public void setCourse(int course)
+    {
+        this.course = course;
+    }
+
+    // Метод для отримання курсу студента
+    public int getCourse()
+    {
+        return course;
+    }
+}
+
+// Клас-нащадок, що розширює клас Worker для представлення водія
+public class Driver : Worker
+{
+    private int drivingExperience; // Водійський стаж
+    private char drivingCategory; // Категорія водіння (A, B, C)
+
+    // Метод для встановлення водійського стажу
+    public void setDrivingExperience(int drivingExperience)
+    {
+        this.drivingExperience = drivingExperience;
+    }
+
+    // Метод для отримання водійського стажу
+    public int getDrivingExperience()
+    {
+        return drivingExperience;
+    }
+
+    // Метод для встановлення категорії водіння
+    public void setDrivingCategory(char drivingCategory)
+    {
+        this.drivingCategory = drivingCategory;
+    }
+
+    // Метод для отримання категорії водіння
+    public char getDrivingCategory()
+    {
+        return drivingCategory;
+    }
+}
+
+// Основний клас програми
+public class Program
+{
+    // Точка входу в програму
+    public static void Main(string[] args)
+    {
+        // Створення об'єкта Івана як працівника
+        Worker ivan = new Worker();
+        ivan.setName("Іван");
+        ivan.setAge(25);
+        ivan.setSalary(1000);
+
+        // Створення об'єкта Васі як працівника
+        Worker vasya = new Worker();
+        vasya.setName("Вася");
+        vasya.setAge(26);
+        vasya.setSalary(2000);
+
+        // Обчислення та виведення суми зарплат Івана і Васі
+        int totalSalary = ivan.getSalary() + vasya.getSalary();
+        Console.WriteLine($"Сума зарплати Івана і Васі: {totalSalary}");
+    }
+}
