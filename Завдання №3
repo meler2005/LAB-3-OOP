@@ -1,0 +1,95 @@
+using System;
+
+// Клас представляє книгу з основними атрибутами
+public class Book
+{
+    // Поля для назви, автора та року видання книги
+    protected string title;
+    protected string author;
+    protected int publicationYear;
+
+    // Конструктор за замовчуванням, ініціалізує поля значеннями за замовчуванням
+    public Book()
+    {
+        title = "Unknown";
+        author = "Unknown";
+        publicationYear = 0;
+    }
+
+    // Конструктор, що дозволяє ініціалізувати книгу зі зазначеними атрибутами
+    public Book(string title, string author, int publicationYear)
+    {
+        this.title = title;
+        this.author = author;
+        this.publicationYear = publicationYear;
+    }
+
+    // Функція обчислення віку книги в роках
+    public int YearsOld()
+    {
+        return DateTime.Now.Year - publicationYear;
+    }
+
+    // Функція обчислення кількості днів, що пройшли після видання книги
+    public int DaysSincePublication()
+    {
+        DateTime currentDate = DateTime.Now;
+        DateTime publicationDate = new DateTime(publicationYear, 1, 1);
+        TimeSpan timeDifference = currentDate - publicationDate;
+        return timeDifference.Days;
+    }
+
+    // Перевизначення методу ToString для форматованого виведення інформації про книгу
+    public override string ToString()
+    {
+        return $"Title: {title}, Author: {author}, Publication Year: {publicationYear}";
+    }
+}
+
+// Клас представляє книжковий магазин з полями, спадкованими від класу Book,
+// та з додатковим полем - ціною книги
+public class Bookstore : Book
+{
+    private double price; // Ціна книги
+
+    // Конструктор з параметрами, ініціалізує поля книги та ціни
+    public Bookstore(string title, string author, int publicationYear, double price) : base(title, author, publicationYear)
+    {
+        this.price = price;
+    }
+
+    // Метод, що зменшує вартість книги на 20%, якщо книзі більше 5 років
+    public void DecreasePrice()
+    {
+        if (YearsOld() > 5)
+            price *= 0.8; // Зменшення ціни на 20%
+    }
+
+    // Перевизначення методу ToString для форматованого виведення інформації про книгу та її ціну
+    public override string ToString()
+    {
+        return base.ToString() + $", Price: {price:C}";
+    }
+}
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        // Приклад використання класу Book
+        Book book1 = new Book("Harry Potter", "J.K. Rowling", 1997);
+        Console.WriteLine("Book Information:");
+        Console.WriteLine(book1);
+        Console.WriteLine("Years Old: " + book1.YearsOld());
+        Console.WriteLine("Days Since Publication: " + book1.DaysSincePublication());
+
+        Console.WriteLine();
+
+        // Приклад використання класу Bookstore
+        Bookstore book2 = new Bookstore("The Catcher in the Rye", "J.D. Salinger", 1951, 25.99);
+        Console.WriteLine("Bookstore Information:");
+        Console.WriteLine(book2);
+        book2.DecreasePrice();
+        Console.WriteLine("Discounted Price: " + book2);
+    }
+}
