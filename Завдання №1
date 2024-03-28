@@ -1,0 +1,81 @@
+using System;
+
+// Оголошення класу Person
+public class Person
+{
+    protected int age; // Поле для зберігання віку людини
+
+    // Метод для привітання людини
+    public virtual void Greet()
+    {
+        Console.WriteLine("Людина: Привіт!");
+    }
+
+    // Метод для встановлення віку людини
+    public void SetAge(int age)
+    {
+        this.age = age;
+    }
+}
+
+// Клас-нащадок Student, що розширює клас Person
+public class Student : Person
+{
+    // Перевизначений метод привітання
+    public override void Greet()
+    {
+        Console.WriteLine("Студент: Привіт!");
+    }
+
+    // Метод для навчання
+    public void Study()
+    {
+        Console.WriteLine("Студент: Я навчаюсь");
+    }
+
+    // Метод для відображення віку студента
+    public void ShowAge()
+    {
+        Console.WriteLine($"Студент: Мені {age} років");
+    }
+}
+
+// Клас-нащадок Professor, що розширює клас Person
+public class Professor : Person
+{
+    // Перевизначений метод привітання
+    public override void Greet()
+    {
+        Console.WriteLine("Професор: Привіт!");
+    }
+
+    // Метод для пояснення
+    public void Explain()
+    {
+        Console.WriteLine("Професор: Я пояснюю");
+    }
+}
+
+// Клас для тестування студентів та професорів
+public class StudentProfessorTest
+{
+    // Точка входу в програму
+    public static void Main(string[] args)
+    {
+        // 1. Створіть нову людину і змусьте її привітатися.
+        Person person = new Person();
+        person.Greet();
+
+        // 2. Створіть нового студента, встановіть вік, привітайтеся та покажіть його вік на екрані.
+        Student student = new Student();
+        student.SetAge(20);
+        student.Greet();
+        student.ShowAge();
+
+        // 3. Створіть нового професора, встановіть вік, привітайтеся і почніть пояснення.
+        Professor professor = new Professor();
+        professor.SetAge(45);
+        professor.Greet();
+        professor.Explain();
+    }
+}
